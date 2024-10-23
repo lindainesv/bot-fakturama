@@ -46,7 +46,7 @@ def main():
 
     planilha = BotCSVPlugin()
 
-    dados = planilha.read(r"resources\produtos\items.csv").as_dataframe()
+    dados = planilha.read(r"resources\produtos\items.csv").as_list()
 
     # print(dados)
     # input()
