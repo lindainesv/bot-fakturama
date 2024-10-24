@@ -23,6 +23,7 @@ https://documentation.botcity.dev/tutorials/python-automations/desktop/
 
 # Import for the Desktop Bot
 import pdb
+import time
 from botcity.core import DesktopBot
 # Import BotCSVPlugin
 from botcity.plugins.csv import BotCSVPlugin
@@ -46,7 +47,7 @@ def main():
 
     planilha = BotCSVPlugin()
 
-    dados = planilha.read(r"resources\produtos\items.csv").as_list()
+    dados = planilha.read(r"resources\produtos\items.csv").as_dataframe()
 
     # print(dados)
     # input()
@@ -56,7 +57,7 @@ def main():
     # Abre a aplicação Fakturama
     bot.execute(r"C:\Program Files\Fakturama2\Fakturama.exe")
 
-    for item in dados:
+    for item, row in dados.iterrows():
 
         # Clique sobre o botão de novo produto
         if not bot.find("New_product", matching=0.97, waiting_time=20000):
@@ -69,41 +70,41 @@ def main():
         bot.click_relative(180, 7)
 
         # itemnr
-        bot.paste(item[1])
+        bot.paste(row['itemnr'])
         bot.tab()
 
         # name
-        bot.paste(item[2])
+        bot.paste(row['name'])
         bot.tab()
 
         # category
-        bot.paste(item[3])
+        bot.paste(row['category'])
         bot.tab()
 
         # GTIN
-        bot.paste(item[4])
+        bot.paste(row['GTIN'])
         bot.tab()
 
         # supcode
-        bot.paste(item[5])
+        bot.paste(row['supcode'])
         bot.tab()
 
         # description
-        bot.paste(item[6])
+        bot.paste(row['description'])
         bot.tab()
         # pdb.set_trace()
 
         # price
         bot.control_a()
-        bot.paste(item[7])
+        bot.paste(row['price'])
         bot.tab()
 
         # costprice
-        bot.paste(item[8])
+        bot.paste(row['costprice'])
         bot.tab()
 
         # allowance
-        bot.paste(item[9])
+        bot.paste(row['allowance'])
         bot.tab()
 
         # Scrool
@@ -117,7 +118,7 @@ def main():
 
         # quantity
         bot.control_a()
-        bot.paste(item[14])
+        bot.paste(row['quantity'])
         bot.tab()
 
         # select picture
@@ -127,7 +128,7 @@ def main():
 
         # path image
         bot.paste(
-            rf"C:\Users\linda\OneDrive\Área de Trabalho\projeto_botcity_insercao_produtos\bot-fakturama\resources\produtos\imagens_produtos\{item[13]}")
+            rf"C:\Users\linda\OneDrive\Área de Trabalho\projeto_botcity_insercao_produtos\bot-fakturama\resources\produtos\imagens_produtos\{row['picturename']}")
         bot.enter()
 
         # save
