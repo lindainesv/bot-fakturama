@@ -47,7 +47,7 @@ def main():
 
     planilha = BotCSVPlugin()
 
-    dados = planilha.read(r"resources\produtos\items.csv").as_dataframe()
+    dados = planilha.read(r"resources\\produtos\\items.csv").as_dataframe()
 
     # print(dados)
     # input()
@@ -55,7 +55,7 @@ def main():
     bot = DesktopBot()
 
     # Abre a aplicação Fakturama
-    bot.execute(r"C:\Program Files\Fakturama2\Fakturama.exe")
+    bot.execute(r"C:\\Program Files\\Fakturama2\\Fakturama.exe")
 
     for item, row in dados.iterrows():
 
@@ -126,10 +126,21 @@ def main():
             not_found("select_picture")
         bot.click()
 
+        nome_arquivo_imagem = {row['picturename']}
+
         # path image
-        bot.paste(
-            rf"C:\Users\linda\OneDrive\Área de Trabalho\projeto_botcity_insercao_produtos\bot-fakturama\resources\produtos\imagens_produtos\{row['picturename']}")
-        bot.enter()
+        if not (".jpg" in nome_arquivo_imagem
+                or ".png" in nome_arquivo_imagem):
+            bot.paste("""C:\\Users\\linda\\OneDrive\\Área de Trabalho\\
+                      projeto_botcity_insercao_produtos\\bot-fakturama\\
+                      resources\\produtos\\imagens_produtos\\no_image.jpg""")
+            bot.enter()
+        else:
+            bot.paste(rf"""C:\\Users\\linda\\OneDrive\\Área de Trabalho\\
+                      projeto_botcity_insercao_produtos\\bot-fakturama\\
+                      resources\\produtos\\imagens_produtos\\
+                      {nome_arquivo_imagem}""")
+            bot.enter()
 
         # save
         if not bot.find("save", matching=0.97, waiting_time=10000):
