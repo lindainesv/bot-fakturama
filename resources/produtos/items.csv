@@ -1,5 +1,5 @@
 id,itemnr,name,category,GTIN,supcode,description,price,costprice,allowance,vat,vatname,date_added,picturename,quantity
-1,519,Lâmpada LED,Escritório,2345678901234,DEF456,Lâmpada LED de mesa,"25.00","15.00",0,5,MwSt. 5%,2024-07-12,2345678901234.jpg,20
+1,519,Lâmpada LED,Escritório,2345678901234,DEF456,Lâmpada LED de mesa,"25.00","15.00",0,5,MwSt. 5%,2024-07-12,,20
 2,472,Caneta Azul,Escritório,1234567890123,ABC123,Caneta esferográfica azul,"1.50","0.50",0,5,MwSt. 5%,2024-07-12,1234567890123.jpg,100
 3,829,Borracha Branca,Escritório,1234567890125,GHI789,Borracha branca macia,"0.80","0.60",0,5,MwSt. 5%,2024-07-12,1234567890125.jpg,150
 4,143,Régua de 30cm,Escritório,1234567890126,JKL012,Régua plástica de 30cm,"2.00","1.20",0,5,MwSt. 5%,2024-07-12,1234567890126.jpg,80
