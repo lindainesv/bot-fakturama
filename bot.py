@@ -62,12 +62,12 @@ def main():
     for item, row in dados.iterrows():
 
         # Clique sobre o botão de novo produto
-        if not bot.find("New_product", matching=0.97, waiting_time=20000):
+        if not bot.find("New_product", matching=0.97, waiting_time=30000):
             not_found("New_product")
         bot.click()
 
         # Clique no campo de nome do produto
-        if not bot.find("item_number", matching=0.97, waiting_time=10000):
+        if not bot.find("item_number", matching=0.97, waiting_time=100000):
             not_found("item_number")
         bot.click_relative(180, 7)
 
@@ -128,17 +128,17 @@ def main():
             not_found("select_picture")
         bot.click()
 
-        nome_arquivo_imagem = {row['picturename']}
+        nome_arquivo_imagem = str(row['picturename'])
+        # print(nome_arquivo_imagem)
+        # input()
 
         # path image
-        if not (".jpg" in nome_arquivo_imagem
-                or ".png" in nome_arquivo_imagem):
-            bot.paste(r"""C:\Users\linda\OneDrive\Área de Trabalho\projeto_botcity_insercao_produtos\bot-fakturama\resources\produtos\imagens_produtos\no_image.jpg""")
+        if not (".jpg" in nome_arquivo_imagem or ".png" in nome_arquivo_imagem) or nome_arquivo_imagem == "":
+            bot.paste(rf"C:\Users\linda\OneDrive\Área de Trabalho\projetos_botcity\bot-fakturama\resources\produtos\imagens_produtos\no_image.jpg")
             bot.enter()
             print("Arquivo sem imagem")
         else:
-            bot.paste(rf"""C:\Users\linda\OneDrive\Área de Trabalho\projeto_botcity_insercao_produtos\bot-fakturama\resources\produtos\imagens_produtos\
-{nome_arquivo_imagem}""")
+            bot.paste(rf"""C:\Users\linda\OneDrive\Área de Trabalho\projetos_botcity\bot-fakturama\resources\produtos\imagens_produtos\{nome_arquivo_imagem}""")
             bot.enter()
             print("Arquivo com imagem")
 
@@ -152,21 +152,12 @@ def main():
 
     bot.control_key("q")
 
-
-
-
-
-
-
-
-
-
     # Uncomment to mark this task as finished on BotMaestro
-    # maestro.finish_task(
-    #     task_id=execution.task_id,
-    #     status=AutomationTaskFinishStatus.SUCCESS,
-    #     message="Task Finished OK."
-    # )
+    maestro.finish_task(
+        task_id=execution.task_id,
+        status=AutomationTaskFinishStatus.SUCCESS,
+        message="Task Finished OK."
+    )
 
 
 def not_found(label):
